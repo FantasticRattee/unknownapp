@@ -1,0 +1,65 @@
+flowchart TD
+    A([Start]) --> B[Display Main Menu]
+    B --> C{Select Role}
+
+    C -->|Student| D[Enter Student ID]
+    C -->|Admin| E[Enter Admin Password]
+    C -->|Exit| Z([Exit Program])
+
+    D --> D1{Student Exists?}
+    D1 -->|Yes| F[Student Menu]
+    D1 -->|No| D2[Create New Student]
+    D2 --> F
+
+    E --> E1{Password Correct?}
+    E1 -->|Yes| G[Admin Menu]
+    E1 -->|No| B
+
+    F --> F1{Select Option}
+    F1 -->|1| S1[View Course Catalog]
+    F1 -->|2| S2[Register for Course]
+    F1 -->|3| S3[Drop a Course]
+    F1 -->|4| S4[View My Schedule]
+    F1 -->|5| S5[View Billing Summary]
+    F1 -->|6| S6[Edit My Profile]
+    F1 -->|7| S7[Logout & Save]
+
+    S2 --> S2a{Check Prerequisites}
+    S2a -->|Pass| S2b{Check Schedule Conflict}
+    S2a -->|Fail| S2d[Show Error]
+    S2b -->|No Conflict| S2c{Check Capacity}
+    S2b -->|Conflict| S2d
+    S2c -->|Available| S2e[Enroll Student]
+    S2c -->|Full| S2d
+
+    S1 --> F
+    S2e --> F
+    S2d --> F
+    S3 --> F
+    S4 --> F
+    S5 --> F
+    S6 --> F
+    S7 --> B
+
+    G --> G1{Select Option}
+    G1 -->|1| A1[View Course Catalog]
+    G1 -->|2| A2[View Class Roster]
+    G1 -->|3| A3[View All Students]
+    G1 -->|4| A4[Add New Student]
+    G1 -->|5| A5[Edit Student Profile]
+    G1 -->|6| A6[Add New Course]
+    G1 -->|7| A7[Edit Course]
+    G1 -->|8| A8[View Any Student Schedule]
+    G1 -->|9| A9[View Billing Summary]
+    G1 -->|10| A10[Logout & Save]
+
+    A1 --> G
+    A2 --> G
+    A3 --> G
+    A4 --> G
+    A5 --> G
+    A6 --> G
+    A7 --> G
+    A8 --> G
+    A9 --> G
+    A10 --> B
